@@ -10,71 +10,21 @@ import UIKit
 
 class SnakeView: UIView {
     
-    var snake: Snake?
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
 
         context?.setStrokeColor(UIColor.red.cgColor)
         
-        context?.setLineWidth(5)
+        context?.setLineWidth(shuttle)
 
-        if(snake == nil){
-            return
-        }
-        var header = snake!.bodyPoint![0]
+        let snake = Snake.shardInstance()
         
-        switch snake!.direction {
-            case .top:
-                
-            break
-            
-            case .bottom:
-                if(header.y + 10 > 300) {
-                    header.y = 0
-                }else{
-                    header.y += 10
-                }
-            break
-            
-            case .left:
-            
-            break
-            
-            case .right:
-            
-            break
-        
-            default:
-            break
-        }
-        
-        snake?.bodyPoint?.removeLast()
-        
-        snake?.bodyPoint?.insert(header, at: 0)
-
-        let snakeLength = snake!.bodyPoint!.count
-        
-        var test = false
-        for num in snake!.bodyPoint!{
-            
-            
-            if(test == false){
-                context?.move(to: num)
-                test = true
-            }else{
-                context?.addLine(to: num)
-            }
-            
-            
-            
+        for point in snake.bodyPoint!{
+            context?.fill(CGRect(x: point.x - resetToZero, y: point.y - resetToZero, width: shuttle, height: shuttle))
         }
         
         context?.strokePath()
     }
 
-    func displaySnake(snake: Snake){
-        self.snake = snake
-        self.setNeedsDisplay()
-    }
 }

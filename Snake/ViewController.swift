@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     var snakeView: SnakeView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        initSnake()
+        snake = Snake.shardInstance()
+        addSwipe()
         gameView.layer.borderWidth = 1
         gameView.layer.borderColor = UIColor.black.cgColor
         
@@ -36,15 +37,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func initSnake(){
-        snake = Snake()
-        snake?.bodyPoint = [CGPoint(x: 150, y: 150), CGPoint(x: 150, y: 160), CGPoint(x: 150, y: 170)]
-    }
 
     func updateView(){
-        snakeView?.displaySnake(snake: snake!)
+        snake!.updateBody()
+        snakeView?.setNeedsDisplay()
     }
 
+    func addSwipe(){
+       // let topSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDirection(.top)))
+        
+    }
+
+    func swipeDirection(direction: Direction){
+        
+    }
 }
 
