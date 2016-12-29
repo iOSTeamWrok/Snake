@@ -35,6 +35,12 @@ class Snake: NSObject {
         }
         return _snake!
     }
+    
+    func snakeReset(){
+        bodyPoint = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
+        direction = .left
+        eatCount  = 0
+    }
 
     func updateBody() -> Status{
         

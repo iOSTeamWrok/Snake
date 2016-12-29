@@ -50,6 +50,7 @@ class ViewController: UIViewController {
             fruitView?.setNeedsDisplay()
         }else if(snakeStatus == .hit){
             timer?.invalidate()
+            timer = nil
             gameOver()
         }
         
@@ -72,15 +73,14 @@ class ViewController: UIViewController {
     }
     
     func gameOver(){
-        let alertController = UIAlertController(title: "GameOver", message: "你已經死了", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "GameOver", message: "遊戲結束", preferredStyle: .alert)
         let againAction = UIAlertAction(title: "重新開始", style: .default) { (UIAlertAction) in
-            print("重新")
-        }
-        let overAction = UIAlertAction(title: "結束", style: .cancel) { (UIAlertAction) in
-            exit(0)
+            self.snake?.snakeReset()
+            self.fruit?.getUsableLocation()
+            self.timer = Timer.scheduledTimer(timeInterval: 0.1
+                , target: self, selector: #selector(self.updateView), userInfo: nil, repeats: true)
         }
         alertController.addAction(againAction)
-        alertController.addAction(overAction)
         self.present(alertController, animated: true, completion: nil)
     }
    
