@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         snake = Snake.shardInstance()
-    
+        fruit = Fruit.shardInstance()
         addSwipe()
         gameView.layer.borderWidth = 1
         gameView.layer.borderColor = UIColor.black.cgColor
@@ -33,8 +33,6 @@ class ViewController: UIViewController {
         snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
         snakeView?.backgroundColor = UIColor.clear
         gameView.addSubview(snakeView!)
-        
-        
         
         self.addSwipe()
     }
@@ -77,6 +75,7 @@ class ViewController: UIViewController {
         let againAction = UIAlertAction(title: "重新開始", style: .default) { (UIAlertAction) in
             self.snake?.snakeReset()
             self.fruit?.getUsableLocation()
+            self.fruitView?.setNeedsDisplay()
             self.timer = Timer.scheduledTimer(timeInterval: 0.1
                 , target: self, selector: #selector(self.updateView), userInfo: nil, repeats: true)
         }

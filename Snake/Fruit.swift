@@ -25,8 +25,6 @@ class Fruit: NSObject {
     
     private func createLocation() -> CGPoint{
         let xInt = UInt32(border) / 10
-//        let x = Int(arc4random())%xInt * 10 + 5
-//        let y = Int(arc4random())%xInt * 10 + 5
         let x = Int(arc4random_uniform(xInt) * 10) + 5
         let y = Int(arc4random_uniform(xInt) * 10) + 5
         return CGPoint(x: x, y: y)
