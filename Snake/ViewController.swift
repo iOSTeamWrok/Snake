@@ -8,8 +8,6 @@
 
 import UIKit
 
-let AAA = 2
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var gameView: UIView!
@@ -30,7 +28,8 @@ class ViewController: UIViewController {
         
         
 
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1
+            , target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
         self.addSwipe()
     }
 
@@ -42,6 +41,7 @@ class ViewController: UIViewController {
     func updateView(){
         snake!.updateBody()
         snakeView?.setNeedsDisplay()
+
     }
 
     func addSwipe(){

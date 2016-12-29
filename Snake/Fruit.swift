@@ -9,5 +9,11 @@
 import UIKit
 
 class Fruit: NSObject {
- 
+    var location: CGPoint?
+    
+    func createLocation(){
+        let x = Int(arc4random())%Int(border/10) * 10 + 5
+        let y = Int(arc4random())%Int(border/10) * 10 + 5
+        location! = CGPoint(x: x, y: y)
+    }
 }
