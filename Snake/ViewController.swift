@@ -25,8 +25,6 @@ class ViewController: UIViewController {
         snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
         snakeView?.backgroundColor = UIColor.white
         gameView.addSubview(snakeView!)
-        
-        
 
         timer = Timer.scheduledTimer(timeInterval: 0.1
             , target: self, selector: #selector(updateView), userInfo: nil, repeats: true)

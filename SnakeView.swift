@@ -41,11 +41,11 @@ class SnakeView: UIView {
                 case .bottom:
                     imgOrientation = UIImageOrientation.up
                     displacementX = -2
-                    displacementY = -3
+                    displacementY = -4
                     break
                 case .right:
                     imgOrientation = UIImageOrientation.left
-                    displacementX = -3
+                    displacementX = -4
                     displacementY = -2
                     break
                 case .left:
