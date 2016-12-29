@@ -14,7 +14,7 @@ class SnakeView: UIView {
         
         let context = UIGraphicsGetCurrentContext()
 
-        context?.setStrokeColor(UIColor.red.cgColor)
+        context?.setFillColor(UIColor.red.cgColor)
         
         context?.setLineWidth(shuttle)
 

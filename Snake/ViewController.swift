@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         addSwipe()
         gameView.layer.borderWidth = 1
         gameView.layer.borderColor = UIColor.black.cgColor
+        gameView.isUserInteractionEnabled = false
         
         snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
         snakeView?.backgroundColor = UIColor.white
@@ -29,8 +30,8 @@ class ViewController: UIViewController {
         
         
 
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
-        
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+        self.addSwipe()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,12 +45,19 @@ class ViewController: UIViewController {
     }
 
     func addSwipe(){
-       // let topSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDirection(.top)))
+        let swipeDirection: Array<UISwipeGestureRecognizerDirection> = [
+            UISwipeGestureRecognizerDirection.up,
+            UISwipeGestureRecognizerDirection.down,
+            UISwipeGestureRecognizerDirection.left,
+            UISwipeGestureRecognizerDirection.right
+        ]
         
+        for direction in swipeDirection{
+            let gesture = UISwipeGestureRecognizer(target: snake, action: #selector(snake?.getSwipe(_:)))
+            gesture.direction = direction
+            self.view.addGestureRecognizer(gesture)
+        }
     }
 
-    func swipeDirection(direction: Direction){
-        
-    }
 }
 

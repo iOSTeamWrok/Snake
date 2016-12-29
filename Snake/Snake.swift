@@ -85,8 +85,34 @@ class Snake: NSObject {
         eatCount += 2
     }
     
-    func getSwipe(direction: Direction){
-        self.direction = direction
+    func getSwipe(_ swipe: UISwipeGestureRecognizer){
+        
+        if((direction == .top || direction == .bottom) && (swipe.direction == UISwipeGestureRecognizerDirection.up || swipe.direction == UISwipeGestureRecognizerDirection.down)){
+            return
+        }
+        
+        if((direction == .left || direction == .right) && (swipe.direction == UISwipeGestureRecognizerDirection.left || swipe.direction == UISwipeGestureRecognizerDirection.right)){
+            return
+        }
+        
+        
+        switch swipe.direction {
+        case UISwipeGestureRecognizerDirection.up:
+            direction = .top
+            break
+        case UISwipeGestureRecognizerDirection.down:
+            direction = .bottom
+            break
+        case UISwipeGestureRecognizerDirection.right:
+            direction = .right
+            break
+        case UISwipeGestureRecognizerDirection.left:
+            direction = .left
+            break
+            
+        default:
+            break
+        }
     }
 }
 
