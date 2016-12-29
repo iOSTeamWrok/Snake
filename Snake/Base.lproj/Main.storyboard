@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,10 +28,19 @@
                                     <constraint firstAttribute="height" constant="300" id="ho7-D3-D3f"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvr-Bb-ZSI">
+                                <rect key="frame" x="172" y="20" width="31" height="30"/>
+                                <state key="normal" title="開始"/>
+                                <connections>
+                                    <action selector="startHandler:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Zk-Ma-ugd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EbC-Pf-A4q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Dz7-dr-gxs"/>
+                            <constraint firstItem="Lvr-Bb-ZSI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fd9-5I-dNM"/>
+                            <constraint firstItem="Lvr-Bb-ZSI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Waj-gl-slQ"/>
                             <constraint firstItem="EbC-Pf-A4q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fXV-pb-Mtv"/>
                         </constraints>
                     </view>

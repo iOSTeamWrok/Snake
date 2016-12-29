@@ -14,20 +14,28 @@ class ViewController: UIViewController {
     var timer: Timer?
     var snake: Snake?
     var snakeView: SnakeView?
+    var fruit: Fruit?
+    var fruitView: FruitView?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         snake = Snake.shardInstance()
+    
         addSwipe()
         gameView.layer.borderWidth = 1
         gameView.layer.borderColor = UIColor.black.cgColor
         gameView.isUserInteractionEnabled = false
         
+        fruitView = FruitView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
+        fruitView?.backgroundColor = UIColor.clear
+        gameView.addSubview(fruitView!)
+        
         snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
-        snakeView?.backgroundColor = UIColor.white
+        snakeView?.backgroundColor = UIColor.clear
         gameView.addSubview(snakeView!)
-
-        timer = Timer.scheduledTimer(timeInterval: 0.1
-            , target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+        
+        
+        
         self.addSwipe()
     }
 
@@ -37,9 +45,15 @@ class ViewController: UIViewController {
     }
 
     func updateView(){
-        snake!.updateBody()
+        let snakeStatus = snake!.updateBody()
+        if(snakeStatus == .eat){
+            fruitView?.setNeedsDisplay()
+        }else if(snakeStatus == .hit){
+            timer?.invalidate()
+            gameOver()
+        }
+        
         snakeView?.setNeedsDisplay()
-
     }
 
     func addSwipe(){
@@ -55,6 +69,25 @@ class ViewController: UIViewController {
             gesture.direction = direction
             self.view.addGestureRecognizer(gesture)
         }
+    }
+    
+    func gameOver(){
+        let alertController = UIAlertController(title: "GameOver", message: "你已經死了", preferredStyle: .alert)
+        let againAction = UIAlertAction(title: "重新開始", style: .default) { (UIAlertAction) in
+            print("重新")
+        }
+        let overAction = UIAlertAction(title: "結束", style: .cancel) { (UIAlertAction) in
+            exit(0)
+        }
+        alertController.addAction(againAction)
+        alertController.addAction(overAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+   
+    @IBAction func startHandler(_ sender: UIButton) {
+        timer = Timer.scheduledTimer(timeInterval: 0.1
+            , target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+        sender.isHidden = true
     }
 
 }

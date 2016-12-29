@@ -53,8 +53,6 @@ class SnakeView: UIView {
                     displacementX = 0
                     displacementY = -2
                     break
-                default:
-                    break
                 }
                 
                 let resultImage = UIImage(cgImage: image!.cgImage!, scale: 1, orientation: imgOrientation!)

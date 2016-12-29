@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BE2DACEC1E14B6E70064543E /* snake.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2DACEB1E14B6E70064543E /* snake.png */; };
+		BE2DACF11E1532440064543E /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2DACF01E1532440064543E /* apple.png */; };
+		BE2DACF31E1532550064543E /* FruitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2DACF21E1532550064543E /* FruitView.swift */; };
 		BEEF1D331E13B44900FEB24E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF1D321E13B44900FEB24E /* AppDelegate.swift */; };
 		BEEF1D351E13B44900FEB24E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF1D341E13B44900FEB24E /* ViewController.swift */; };
 		BEEF1D381E13B44900FEB24E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEF1D361E13B44900FEB24E /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		BE2DACEB1E14B6E70064543E /* snake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snake.png; sourceTree = "<group>"; };
+		BE2DACF01E1532440064543E /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		BE2DACF21E1532550064543E /* FruitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FruitView.swift; sourceTree = "<group>"; };
 		BEEF1D2F1E13B44900FEB24E /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEF1D321E13B44900FEB24E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEEF1D341E13B44900FEB24E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +54,7 @@
 		BEEF1D471E13B44900FEB24E /* SnakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeTests.swift; sourceTree = "<group>"; };
 		BEEF1D491E13B44900FEB24E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEEF1D4E1E13B44900FEB24E /* SnakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEEF1D521E13B44900FEB24E /* SnakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeUITests.swift; sourceTree = "<group>"; };
+		BEEF1D521E13B44900FEB24E /* SnakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnakeUITests.swift; path = SnakeUITests/SnakeUITests.swift; sourceTree = "<group>"; };
 		BEEF1D541E13B44900FEB24E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEEF1D601E13B48100FEB24E /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Snake.swift; path = Snake/Snake.swift; sourceTree = "<group>"; };
 		BEEF1D621E13B49D00FEB24E /* Fruit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fruit.swift; path = Snake/Fruit.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 				BEEF1D461E13B44900FEB24E /* SnakeTests */,
 				BEEF1D511E13B44900FEB24E /* SnakeUITests */,
 				BEEF1D301E13B44900FEB24E /* Products */,
+				BEEF1D521E13B44900FEB24E /* SnakeUITests.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +118,7 @@
 				BEEF1D3B1E13B44900FEB24E /* LaunchScreen.storyboard */,
 				BEEF1D3E1E13B44900FEB24E /* Info.plist */,
 				BE2DACEB1E14B6E70064543E /* snake.png */,
+				BE2DACF01E1532440064543E /* apple.png */,
 			);
 			path = Snake;
 			sourceTree = "<group>";
@@ -129,7 +135,6 @@
 		BEEF1D511E13B44900FEB24E /* SnakeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BEEF1D521E13B44900FEB24E /* SnakeUITests.swift */,
 				BEEF1D541E13B44900FEB24E /* Info.plist */,
 			);
 			path = SnakeUITests;
@@ -141,6 +146,7 @@
 				BEEF1D601E13B48100FEB24E /* Snake.swift */,
 				BEEF1D621E13B49D00FEB24E /* Fruit.swift */,
 				BEEF1D671E13B75800FEB24E /* SnakeView.swift */,
+				BE2DACF21E1532550064543E /* FruitView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 				BEEF1D3A1E13B44900FEB24E /* Assets.xcassets in Resources */,
 				BE2DACEC1E14B6E70064543E /* snake.png in Resources */,
 				BEEF1D381E13B44900FEB24E /* Main.storyboard in Resources */,
+				BE2DACF11E1532440064543E /* apple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +291,7 @@
 				BEEF1D681E13B75800FEB24E /* SnakeView.swift in Sources */,
 				BEEF1D631E13B49D00FEB24E /* Fruit.swift in Sources */,
 				BEEF1D351E13B44900FEB24E /* ViewController.swift in Sources */,
+				BE2DACF31E1532550064543E /* FruitView.swift in Sources */,
 				BEEF1D331E13B44900FEB24E /* AppDelegate.swift in Sources */,
 				BEEF1D611E13B48100FEB24E /* Snake.swift in Sources */,
 			);
