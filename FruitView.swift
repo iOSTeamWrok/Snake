@@ -20,11 +20,12 @@ class FruitView: UIView {
         
         let fruit = Fruit.shardInstance()
 
-        let imagePath = Bundle.main.path(forResource: "apple", ofType: "png")
+        let randomValue = Int(arc4random_uniform(7)) + 1
+        let imagePath = Bundle.main.path(forResource: "fruit\(randomValue)", ofType: "png")
         let image = UIImage(contentsOfFile: imagePath!)
         
 
-        image?.draw(in: CGRect(x: fruit.location!.x - resetToZero , y: fruit.location!.y - resetToZero, width: shuttle, height: shuttle))
+        image?.draw(in: CGRect(x: fruit.location!.x - resetToZero , y: fruit.location!.y - resetToZero, width: shuttle + 3, height: shuttle + 3))
 
         
         context?.strokePath()

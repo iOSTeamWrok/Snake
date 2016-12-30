@@ -17,13 +17,16 @@ enum Status {
 
 let shuttle:CGFloat = 10.0
 let resetToZero:CGFloat = 5.0
-let border:CGFloat = 300.0
+let borderH:CGFloat = UIScreen.main.bounds.size.width - CGFloat(fmodf(Float(UIScreen.main.bounds.size.width), 10))
+let borderV:CGFloat = UIScreen.main.bounds.size.height - 64 - CGFloat(fmodf(Float(UIScreen.main.bounds.size.height - 64), 10))
+let constraintH:CGFloat = CGFloat(fmodf(Float(UIScreen.main.bounds.size.width), 10))
+let constraintV:CGFloat = CGFloat(fmodf(Float(UIScreen.main.bounds.size.height - 64), 10))
 var status: Status = .normal
 
 class Snake: NSObject {
     
     private static var _snake: Snake?
-    
+    var point:Int = 0
     var bodyPoint: Array<CGPoint>? = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
     var direction: Direction = .left
     var eatCount:Int = 0
@@ -40,6 +43,7 @@ class Snake: NSObject {
         bodyPoint = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
         direction = .left
         eatCount  = 0
+        point = 0
     }
 
     func updateBody() -> Status{
@@ -51,13 +55,13 @@ class Snake: NSObject {
         switch direction {
         case .left:
             if(header.x - shuttle < 0){
-                header.x = border - resetToZero
+                header.x = borderH - resetToZero
             }else{
                 header.x -= shuttle
             }
             break
         case .right:
-            if(header.x + shuttle > border){
+            if(header.x + shuttle > borderH){
                 header.x = resetToZero
             }else{
                 header.x += shuttle
@@ -65,14 +69,14 @@ class Snake: NSObject {
             break
         case .top:
             if(header.y - shuttle < 0){
-                header.y = border - resetToZero
+                header.y = borderV - resetToZero
             }else{
                 header.y -= shuttle
             }
             
             break
         case .bottom:
-            if(header.y + shuttle > border){
+            if(header.y + shuttle > borderV){
                 header.y = resetToZero
             }else{
                 header.y += shuttle
@@ -106,6 +110,7 @@ class Snake: NSObject {
     }
     
     func eat(){
+        point += 10
         eatCount += 2
     }
     

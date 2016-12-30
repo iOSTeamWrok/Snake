@@ -9,32 +9,37 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var gameView: UIView!
+    
+    var gameView: UIView?
     var timer: Timer?
     var snake: Snake?
     var snakeView: SnakeView?
     var fruit: Fruit?
     var fruitView: FruitView?
-        
+    @IBOutlet weak var startView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameView = UIView(frame: CGRect(x: constraintH / 2, y: 64, width: borderH, height: borderV))
+        gameView!.layer.borderWidth = 1
+        gameView!.layer.borderColor = UIColor.black.cgColor
+        gameView!.isUserInteractionEnabled = false
+        self.view.addSubview(gameView!)
         snake = Snake.shardInstance()
         fruit = Fruit.shardInstance()
         addSwipe()
-        gameView.layer.borderWidth = 1
-        gameView.layer.borderColor = UIColor.black.cgColor
-        gameView.isUserInteractionEnabled = false
         
-        fruitView = FruitView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
+        fruitView = FruitView(frame: CGRect(origin: CGPoint.zero, size: gameView!.frame.size))
         fruitView?.backgroundColor = UIColor.clear
-        gameView.addSubview(fruitView!)
+        gameView!.addSubview(fruitView!)
         
-        snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView.frame.size))
+        snakeView = SnakeView(frame: CGRect(origin: CGPoint.zero, size: gameView!.frame.size))
         snakeView?.backgroundColor = UIColor.clear
-        gameView.addSubview(snakeView!)
+        gameView!.addSubview(snakeView!)
         
         self.addSwipe()
+        
+        self.view.bringSubview(toFront: startView)
+//        self.title = "分數:\(snake!.point)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +58,7 @@ class ViewController: UIViewController {
         }
         
         snakeView?.setNeedsDisplay()
+        self.title = "分數:\(snake!.point)"
     }
 
     func addSwipe(){
@@ -71,7 +77,7 @@ class ViewController: UIViewController {
     }
     
     func gameOver(){
-        let alertController = UIAlertController(title: "GameOver", message: "遊戲結束", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "遊戲結束", message: "獲得分數:\(snake!.point)", preferredStyle: .alert)
         let againAction = UIAlertAction(title: "重新開始", style: .default) { (UIAlertAction) in
             self.snake?.snakeReset()
             self.fruit?.getUsableLocation()
@@ -86,7 +92,7 @@ class ViewController: UIViewController {
     @IBAction func startHandler(_ sender: UIButton) {
         timer = Timer.scheduledTimer(timeInterval: 0.1
             , target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
-        sender.isHidden = true
+        startView.isHidden = true
     }
 
 }
