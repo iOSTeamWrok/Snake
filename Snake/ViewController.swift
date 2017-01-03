@@ -36,8 +36,6 @@ class ViewController: UIViewController {
         snakeView?.backgroundColor = UIColor.clear
         gameView!.addSubview(snakeView!)
         
-        self.addSwipe()
-        
         self.view.bringSubview(toFront: startView)
 //        self.title = "分數:\(snake!.point)"
     }
