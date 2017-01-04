@@ -26,11 +26,12 @@ var status: Status = .normal
 class Snake: NSObject {
     
     private static var _snake: Snake?
-    var point:Int = 0
+
     var bodyPoint: Array<CGPoint>? = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
     var direction: Direction = .left
     var eatCount:Int = 0
     let fruit: Fruit = Fruit.shardInstance()
+    let score: Score = Score.sharedInstance()
     
     static func shardInstance() -> Snake {
         if _snake == nil {
@@ -43,7 +44,7 @@ class Snake: NSObject {
         bodyPoint = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
         direction = .left
         eatCount  = 0
-        point = 0
+        score.resetScore()
     }
 
     func updateBody() -> Status{
@@ -110,7 +111,7 @@ class Snake: NSObject {
     }
     
     func eat(){
-        point += 10
+        score.actEatFruit()
         eatCount += 2
     }
     

@@ -42,10 +42,8 @@ class Fruit: NSObject {
     }
     
     func getUsableLocation() {
-        var fruitPoint = self.createLocation()
-        while self.isFruitOnSnakeBody(createPoint: fruitPoint) {
-            fruitPoint = self.createLocation()
-        }
-        location = fruitPoint
+        repeat {
+            location = self.createLocation()
+        } while self.isFruitOnSnakeBody(createPoint: location!)
     }
 }
