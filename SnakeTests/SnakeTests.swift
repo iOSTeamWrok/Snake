@@ -55,4 +55,14 @@ class SnakeTests: XCTestCase {
         
     }
     
+    func testActEatFruit() {
+        let snake = Snake.shardInstance()
+        let score = Score.sharedInstance()
+        snake.move()
+        snake.eat()
+        snake.move()
+        snake.eat()
+        XCTAssert(score.iUserScore == 20)
+    }
+    
 }
