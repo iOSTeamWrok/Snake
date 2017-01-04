@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var snakeView: SnakeView?
     var fruit: Fruit?
     var fruitView: FruitView?
+    var score: Score?
     @IBOutlet weak var startView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
         self.view.addSubview(gameView!)
         snake = Snake.shardInstance()
         fruit = Fruit.shardInstance()
+        score = Score.sharedInstance()
         addSwipe()
         
         fruitView = FruitView(frame: CGRect(origin: CGPoint.zero, size: gameView!.frame.size))
@@ -37,7 +39,6 @@ class ViewController: UIViewController {
         gameView!.addSubview(snakeView!)
         
         self.view.bringSubview(toFront: startView)
-//        self.title = "分數:\(snake!.point)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
         }
         
         snakeView?.setNeedsDisplay()
-        self.title = "分數:\(snake!.point)"
+        self.title = "分數:\(score!.iUserScore)"
     }
 
     func addSwipe(){
@@ -75,7 +76,7 @@ class ViewController: UIViewController {
     }
     
     func gameOver(){
-        let alertController = UIAlertController(title: "遊戲結束", message: "獲得分數:\(snake!.point)", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "遊戲結束", message: "獲得分數:\(score!.iUserScore)", preferredStyle: .alert)
         let againAction = UIAlertAction(title: "重新開始", style: .default) { (UIAlertAction) in
             self.snake?.snakeReset()
             self.fruit?.getUsableLocation()
