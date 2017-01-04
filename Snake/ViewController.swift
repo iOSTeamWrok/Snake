@@ -47,15 +47,15 @@ class ViewController: UIViewController {
     }
 
     func updateView(){
-        let snakeStatus = snake!.updateBody()
-        if(snakeStatus == .eat){
+        snake!.move()
+        if(snake!.isHeaderEatFruit()){
             fruitView?.setNeedsDisplay()
-        }else if(snakeStatus == .hit){
+        }else if(snake!.isHeaderHitBody()){
             timer?.invalidate()
             timer = nil
             gameOver()
         }
-        
+    
         snakeView?.setNeedsDisplay()
         self.title = "分數:\(score!.iUserScore)"
     }

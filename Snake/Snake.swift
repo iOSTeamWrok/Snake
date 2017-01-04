@@ -11,9 +11,6 @@ import UIKit
 enum Direction {
     case top, bottom, left, right
 }
-enum Status {
-    case normal, hit, eat
-}
 
 let shuttle:CGFloat = 10.0
 let resetToZero:CGFloat = 5.0
@@ -21,7 +18,7 @@ let borderH:CGFloat = UIScreen.main.bounds.size.width - CGFloat(fmodf(Float(UISc
 let borderV:CGFloat = UIScreen.main.bounds.size.height - 64 - CGFloat(fmodf(Float(UIScreen.main.bounds.size.height - 64), 10))
 let constraintH:CGFloat = CGFloat(fmodf(Float(UIScreen.main.bounds.size.width), 10))
 let constraintV:CGFloat = CGFloat(fmodf(Float(UIScreen.main.bounds.size.height - 64), 10))
-var status: Status = .normal
+
 
 class Snake: NSObject {
     
@@ -32,6 +29,7 @@ class Snake: NSObject {
     var eatCount:Int = 0
     let fruit: Fruit = Fruit.shardInstance()
     let score: Score = Score.sharedInstance()
+    var header: CGPoint?
     
     static func shardInstance() -> Snake {
         if _snake == nil {
@@ -41,73 +39,65 @@ class Snake: NSObject {
     }
     
     func snakeReset(){
-        bodyPoint = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35)]
+        bodyPoint = [CGPoint(x:35, y:35), CGPoint(x:45, y:35), CGPoint(x:55, y:35),]
         direction = .left
         eatCount  = 0
         score.resetScore()
     }
 
-    func updateBody() -> Status{
+    func move(){
         
-        status = .normal
-        
-        var header = bodyPoint![0]
+        header = bodyPoint![0]
         
         switch direction {
         case .left:
-            if(header.x - shuttle < 0){
-                header.x = borderH - resetToZero
+            if(header!.x - shuttle < 0){
+                header!.x = borderH - resetToZero
             }else{
-                header.x -= shuttle
+                header!.x -= shuttle
             }
             break
         case .right:
-            if(header.x + shuttle > borderH){
-                header.x = resetToZero
+            if(header!.x + shuttle > borderH){
+                header!.x = resetToZero
             }else{
-                header.x += shuttle
+                header!.x += shuttle
             }
             break
         case .top:
-            if(header.y - shuttle < 0){
-                header.y = borderV - resetToZero
+            if(header!.y - shuttle < 0){
+                header!.y = borderV - resetToZero
             }else{
-                header.y -= shuttle
+                header!.y -= shuttle
             }
             
             break
         case .bottom:
-            if(header.y + shuttle > borderV){
-                header.y = resetToZero
+            if(header!.y + shuttle > borderV){
+                header!.y = resetToZero
             }else{
-                header.y += shuttle
+                header!.y += shuttle
             }
             break
         }
-        
-    
-        isHeaderEatFruit(headerPoint: header)
-        isHeaderHitBody(headerPoint: header)
-        
+
         if(eatCount != 0){
             eatCount -= 1
         }else{
             bodyPoint!.removeLast()
         }
         
-        bodyPoint!.insert(header, at: 0)
-        
-        
-        return status
+        bodyPoint!.insert(header!, at: 0)
 
     }
     
-    func isHeaderEatFruit(headerPoint: CGPoint){
-        if(headerPoint == fruit.location!){
+    func isHeaderEatFruit() -> Bool{
+        if(header! == fruit.location!){
             eat()
             fruit.getUsableLocation()
-            status = .eat
+            return true
         }
+        return false
     }
     
     func eat(){
@@ -115,14 +105,14 @@ class Snake: NSObject {
         eatCount += 2
     }
     
-    func isHeaderHitBody(headerPoint: CGPoint){
+    func isHeaderHitBody() -> Bool{
         for num in 1...bodyPoint!.count - 1{
             let point = bodyPoint![num]
-            if(point == headerPoint){
-                status = .hit
-                break
+            if(point == header!){
+                return true
             }
         }
+        return false
     }
     
     func getSwipe(_ swipe: UISwipeGestureRecognizer){

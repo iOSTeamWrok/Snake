@@ -10,7 +10,7 @@ import XCTest
 @testable import Snake
 
 class SnakeTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,6 +31,28 @@ class SnakeTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testIsHeaderHitBody() {
+        let snake = Snake.shardInstance()
+        snake.eat()
+        snake.direction = .top
+        snake.move()
+        snake.direction = .right
+        snake.move()
+        snake.direction = .bottom
+        snake.move()
+        XCTAssertEqual(snake.isHeaderHitBody(), true, "hit body")
+    }
+    
+    func testIsHeaderEatFruit() {
+        let snake = Snake.shardInstance()
+        let length = snake.bodyPoint!.count
+        snake.eat()
+        snake.move()
+        snake.move()
+        XCTAssertEqual(snake.bodyPoint!.count, length + 2, "Snake Length is \(length + 2)")
+        
     }
     
 }
